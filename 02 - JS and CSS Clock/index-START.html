@@ -68,7 +68,14 @@
   </style>
 
   <script>
-
+    let hands = {};
+    hands.hourHand = document.querySelector('.hour-hand');
+    hands.minuteHand = document.querySelector('.min-hand');
+    hands.secondHand = document.querySelector('.second-hand');
+    
+    for (const [key, hand] of Object.entries(hands)) {
+      hand.style.transform = "rotate(90deg)";
+    }
 
 
   </script>
