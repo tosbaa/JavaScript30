@@ -72,12 +72,17 @@
     hands.hourHand = document.querySelector('.hour-hand');
     hands.minuteHand = document.querySelector('.min-hand');
     hands.secondHand = document.querySelector('.second-hand');
-    
-    for (const [key, hand] of Object.entries(hands)) {
-      hand.style.transform = "rotate(90deg)";
+
+
+    function setHandsToCurrentTime() {
+      const time = new Date();
+      hands.secondHand.style.transform = `rotate(${(time.getSeconds() * 6) +  90}deg)`;
+      hands.minuteHand.style.transform = `rotate(${(time.getMinutes() * 6) + ((time.getSeconds()/60)*6) + 90}deg)`;
+      hands.hourHand.style.transform = `rotate(${(time.getHours() * 30) + ((time.getMinutes()/60)*30) + 90}deg)`
     }
 
-
+    setInterval(setHandsToCurrentTime, 1000);
+    
   </script>
 </body>
 </html>
