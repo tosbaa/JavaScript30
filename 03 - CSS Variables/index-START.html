@@ -26,6 +26,22 @@
       misc styles, nothing to do with CSS variables
     */
 
+    :root {
+      --base: #ffc600;
+      --spacing: 10px;
+      --blur: 10px;
+    }
+
+    img {
+      padding: var(--spacing) 0 0 var(--spacing);
+      background-color: var(--base);
+      filter: blur(var(--blur));
+    }
+
+    .hl {
+      color: var(--base);
+    }
+
     body {
       text-align: center;
       background: #193549;
@@ -45,6 +61,14 @@
   </style>
 
   <script>
+    const inputs = Array.from(document.querySelectorAll("input"));
+    inputs.forEach(input => {
+      input.addEventListener("input", event => {
+        document.documentElement.style.setProperty(`--${input.getAttribute("id")}`, `${event.target.value}${input.getAttribute("id") == "base" ? "" : "px"}`);
+        console.log(event.target.value);
+      });
+    });
+
   </script>
 
 </body>
