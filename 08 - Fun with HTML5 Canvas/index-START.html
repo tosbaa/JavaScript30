@@ -1,19 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>HTML5 Canvas</title>
-</head>
-<body>
-<canvas id="draw" width="800" height="800"></canvas>
-<script>
-</script>
+  <head>
+    <meta charset="UTF-8" />
+    <title>HTML5 Canvas</title>
+  </head>
+  <body>
+    <canvas id="draw" width="800" height="800"></canvas>
+    <script>
+      let drawingEnabled = false;
+      let x, y;
+      let hue = 0;
+      let radius = 30;
+      let radiusChanger = 1;
 
-<style>
-  html, body {
-    margin: 0;
-  }
-</style>
+      const canvas = document.querySelector("#draw");
+      const ctx = canvas.getContext("2d");
 
-</body>
+      function randomInRange(min = 0, max = 255) {
+        return Math.floor(Math.random() * (max - min)) + min;
+      }
+
+      canvas.addEventListener("mousedown", (event) => {
+        drawingEnabled = true;
+      });
+
+      canvas.addEventListener("mouseup", (event) => {
+        drawingEnabled = false;
+      });
+
+      canvas.addEventListener("mousemove", event => {
+        console.log("Heyy");
+        if (drawingEnabled) {
+          ctx.beginPath();
+          ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
+          ctx.arc(event.offsetX, event.offsetY, radius, 0, Math.PI * 2);
+          ctx.fill();
+
+          radius += radiusChanger;
+          if (radius == 60 || radius ==30) radiusChanger *= -1;
+          hue = (hue + 1) % 360;
+        }
+      });
+    </script>
+
+    <style>
+      html,
+      body {
+        margin: 0;
+      }
+    </style>
+  </body>
 </html>
