@@ -112,13 +112,17 @@
         }
       });
 
-      box.addEventListener("change", event => {
+      box.addEventListener("change", (event) => {
         if (event.target.checked === true && shiftPressed) {
-          for (checkbox of checkboxes) {
-            if (checkbox === event.target) {
+          let currentlyCheckedIndex = checkboxes.findIndex(
+            (checkbox) => checkbox.checked === true
+          );
+          console.log(currentlyCheckedIndex);
+          for (let i = currentlyCheckedIndex; i < checkboxes.length; i++) {
+            if (checkboxes[i] === event.target) {
               break;
             } else {
-              checkbox.checked = true;
+              checkboxes[i].checked = true;
             }
           }
         }
