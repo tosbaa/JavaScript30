@@ -1,40 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Mouse Shadow</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mouse Shadow</title>
+  </head>
+  <body>
+    <div class="hero">
+      <h1 contenteditable>🔥WOAH!</h1>
+    </div>
 
-  <div class="hero">
-    <h1 contenteditable>🔥WOAH!</h1>
-  </div>
+    <style>
+      html {
+        color: black;
+        font-family: sans-serif;
+      }
 
-  <style>
-  html {
-    color: black;
-    font-family: sans-serif;
-  }
+      body {
+        margin: 0;
+      }
 
-  body {
-    margin: 0;
-  }
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+      }
 
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-  }
+      h1 {
+        font-size: 100px;
+      }
+    </style>
 
-  h1 {
-    text-shadow: 10px 10px 0 rgba(0,0,0,1);
-    font-size: 100px;
-  }
-  </style>
+    <script>
+      const text = document.querySelector("h1");
+      const rect = text.getBoundingClientRect();
+      const centerPositionY = Math.floor(rect.y + rect.height / 2);
+      const centerPositionX = Math.floor(rect.x + rect.width / 2);
 
-<script>
-</script>
-</body>
+      let differenceX, differenceY;
+
+      window.addEventListener("mousemove", (event) => {
+        differenceY = event.clientY - centerPositionY;
+        differenceX = event.clientX - centerPositionX;
+        text.style.textShadow = `${differenceY}px ${differenceX}px rgba(0, 255, 0, 0.5),${-differenceY}px ${differenceX}px rgba(255, 255, 0, 0.5),${differenceX}px ${-differenceY}px rgba(0, 0, 255, 0.5),${differenceX}px ${differenceY}px rgba(0, 255, 255, 0.5)`;
+      });
+    </script>
+  </body>
 </html>
