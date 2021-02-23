@@ -54,7 +54,20 @@
   </div>
 
 <script>
+  const nav = document.querySelector("nav");
+  const logo = document.querySelector(".logo");
 
+  const navY = nav.offsetTop;
+
+  window.addEventListener('scroll', event => {
+   
+    if (window.scrollY > navY) {
+      console.log("Entered");
+      nav.classList.add("sticked");
+    } else {
+      nav.classList.remove("sticked");
+    }
+  });
 </script>
 
 </body>

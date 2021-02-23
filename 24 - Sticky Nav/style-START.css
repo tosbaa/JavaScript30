@@ -42,11 +42,11 @@ h1 {
 }
 
 nav {
+  position: sticky;
   background: black;
   top: 0;
   width: 100%;
   transition: all 0.5s;
-  position: relative;
   z-index: 1;
 }
 
@@ -65,7 +65,7 @@ nav li {
   align-items: center;
 }
 
-li.logo {
+li .logo {
   max-width: 0;
   overflow: hidden;
   background: white;
@@ -85,4 +85,17 @@ nav a {
   color: white;
   transition: all 0.2s;
   text-transform: uppercase;
+}
+
+li.logo {
+  max-width: 0;
+  overflow: hidden;
+  background: white;
+  transition: all .5s;
+  font-weight: 600;
+  font-size: 30px;
+}
+
+.sticked  li.logo {
+  max-width: 500px;
 }
