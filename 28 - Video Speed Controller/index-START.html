@@ -15,6 +15,24 @@
   </div>
 
 <script>
+
+  const video = document.querySelector("video")
+  const speed = document.querySelector(".speed");
+  const bar = document.querySelector(".speed-bar");
+  const coords = speed.getBoundingClientRect();
+  const height = coords.bottom - coords.top;
+  let playbackRate;
+
+  function action(event) {
+    const mousePosition = event.clientY - speed.getBoundingClientRect().y;
+    bar.style.height = `${(mousePosition * 100) / height}%`;
+    playbackRate = Number.parseFloat((mousePosition * 4) / height).toFixed(2);
+    bar.innerHTML = `${playbackRate}x`;
+    video.playbackRate = playbackRate;
+  }
+
+  speed.addEventListener("mousemove", action);
+
 </script>
 </body>
 </html>
