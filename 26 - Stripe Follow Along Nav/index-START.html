@@ -268,9 +268,6 @@
       function handleEnter() {
         this.classList.add("trigger-enter");
         bg.classList.add("open");
-        setTimeout(() => {
-          this.classList.add("trigger-enter-active");
-        }, 150);
 
         const dropDown = this.querySelector(".dropdown");
         const dropDownCoords = dropDown.getBoundingClientRect();
@@ -282,6 +279,9 @@
 
         bg.style.width = `${dropDownCoords.right - dropDownCoords.left}px`;
         bg.style.height = `${dropDownCoords.bottom - dropDownCoords.top}px`;
+        setTimeout(() => {
+          this.classList.add("trigger-enter-active");
+        }, 150);
       }
 
       function handleLeave() {
